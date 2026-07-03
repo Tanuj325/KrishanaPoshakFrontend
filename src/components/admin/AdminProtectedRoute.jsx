@@ -15,21 +15,25 @@ function AdminAuthLoadingState() {
  * Protects admin routes.
  * Future-ready for Spring Boot RBAC: later we can check permissions/roles from BE.
  */
-export default function AdminProtectedRoute({ children, requiredRole = 'ADMIN' }) {
-  const { isAuthenticated, role, isLoading } = useAdminAuth()
-  const location = useLocation()
+// export default function AdminProtectedRoute({ children, requiredRole = 'ADMIN' }) {
+//   const { isAuthenticated, role, isLoading } = useAdminAuth()
+//   const location = useLocation()
 
-  if (isLoading) return <AdminAuthLoadingState />
+//   if (isLoading) return <AdminAuthLoadingState />
 
-  if (!isAuthenticated) {
-    return <Navigate to="/admin/login" replace state={{ from: location }} />
-  }
+//   if (!isAuthenticated) {
+//     return <Navigate to="/admin/login" replace state={{ from: location }} />
+//   }
 
-  // Placeholder role check. When BE RBAC is added, this logic can be extended.
-  if (requiredRole && role !== requiredRole) {
-    return <Navigate to="/admin" replace />
-  }
+//   // Placeholder role check. When BE RBAC is added, this logic can be extended.
+//   if (requiredRole && role !== requiredRole) {
+//     return <Navigate to="/admin" replace />
+//   }
 
-  return children
+//   return children
+// }
+
+
+export default function AdminProtectedRoute({ children }) {
+  return children;
 }
-
